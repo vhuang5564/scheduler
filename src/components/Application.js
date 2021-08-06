@@ -23,10 +23,10 @@ const days = [
 ];
 
 const appointments = [
-  // {
-  //   id: 1,
-  //   time: "12pm",
-  // },
+  {
+    id: 1,
+    time: "12pm",
+  },
   {
     id: 2,
     time: "1pm",
@@ -41,7 +41,7 @@ const appointments = [
   },
   {
     id: 3,
-    time: "3pm",
+    time: "2pm",
     interview: {
       student: "Bob Ross",
       interviewer: {
@@ -53,7 +53,7 @@ const appointments = [
   },
   {
     id: 4,
-    time: "5pm",
+    time: "3pm",
     interview: {
       student: "Simba",
       interviewer: {
@@ -65,7 +65,7 @@ const appointments = [
   },
   {
     id: 5,
-    time: "10pm",
+    time: "4pm",
     interview: {
       student: "Aladdin",
       interviewer: {
@@ -81,16 +81,12 @@ const appointments = [
 
 export default function Application(props) {
   const [day, setDay] = useState("Monday");
+
   const appointmentList = appointments.map( appointment => {
-    return (
-      <Appointment
+    return ( 
+      <Appointment 
       key={appointment.id}
-      // {...appointment}
-      id={appointment.id}
-      time={appointment.time}
-      interview={[appointment.interview]}
-      student={[appointment.interview.student]}
-      // interview={appointment.interview}
+      {...appointment}
       />
     )
   })

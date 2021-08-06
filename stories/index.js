@@ -19,6 +19,16 @@ import Status from "components/Appointment/Status"
 import Error from "components/Appointment/Error"
 import Form from "components/Appointment/Form"
 
+const interviewers = [
+  { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
+  { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
+  { id: 3, name: "Mildred Nazir", avatar: "https://i.imgur.com/T2WwVfS.png" },
+  { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
+  { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
+];
+
+const interviewer = interviewers[0];
+
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -79,12 +89,6 @@ storiesOf("DayList", module)
 
 //////////////////////////////////////////////////////////////////////////
   
-const interviewer = {
-  id: 1,
-  name: "Sylvia Palmer",
-  avatar: "https://i.imgur.com/LpaY82x.png"
-};
-
 storiesOf("InterviewerListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -114,14 +118,6 @@ storiesOf("InterviewerListItem", module)
   ));
 
   //////////////////////////////////////////////////////////////////////////
-
-const interviewers = [
-  { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
-  { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
-  { id: 3, name: "Mildred Nazir", avatar: "https://i.imgur.com/T2WwVfS.png" },
-  { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
-  { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
-];
 
 storiesOf("InterviewerList", module)
   .addParameters({
@@ -154,7 +150,7 @@ storiesOf("Appointment", module)
   .add("Show", () => (
     <Show 
       student="Lydia Miller-Jones"
-      interviewer={interviewers[0].name} // retrieves interviewer 0 from line 115
+      interviewer={interviewer} // retrieves interviewer 0 from line 115
       onEdit={action("onEdit")}
       onDelete={action("onDelete")}
     />
