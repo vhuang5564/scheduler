@@ -12,23 +12,21 @@ export default function InterviewerList(props) {
       key={interviewer.id}
       name={interviewer.name}
       avatar={interviewer.avatar}
-      selected={interviewer.id === props.value} // props.interviewer
-      setInterviewer={event => props.onChange(interviewer.id)} // props.setInterviewer
+      selected={interviewer.id === props.value}
+      setInterviewer={event => props.onChange(interviewer.id)}
       />
     )
   })
 
   const interviewerClass = classnames("interviewers", {
     "interviewers__header": true,
-    "interviewers__list": true
+    "interviewers__list": false
   })
 
   return (
     <section className={interviewerClass} onClick={props.setInterviewer}> 
       <h4 className="interviewers__header text--light">Interviewer</h4>
-      <ul className="interviewers__list">
-        {interviewerList}
-      </ul>
+      <ul className="interviewers__list">{interviewerList}</ul>
     </section>
   )
 }
