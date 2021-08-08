@@ -29,7 +29,7 @@ export default function Appointment(props) {
       {mode === CREATE && (
         <Form 
           interviewers={[]} // change when getInterviewersForDay is implemented
-          onCancel={() => transition(EMPTY)}
+          onCancel={() => back()}
         />
       )}
     </article>
