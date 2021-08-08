@@ -29,4 +29,31 @@ function getInterview(state, interview) {
   return interviewObj;
 }
 
-export { getAppointmentsForDay, getInterview}
+function getInterviewersForDay(state, day) {
+  let interviewersList = []
+
+  for (let id in state.days) {
+    const dayName = state.days[id].name;
+
+    if (day === dayName) {
+      const appointmentsForDay = state.days[id].appointments // [1,2,3]
+      appointmentsForDay.forEach(appointment => {
+        if (state.appointments[appointment].interview) { // if interview is not null
+
+          const interviewerId = state.appointments[appointment].interview.interviewer // 2
+          const interviewer = state.interviewers[interviewerId]
+
+          if (interviewersList.includes(interviewer) === false) {
+            interviewersList.push(interviewer)
+          }
+
+        }
+      })
+      return interviewersList
+    } 
+  }
+  return [];
+};
+
+export { getAppointmentsForDay, getInterview, getInterviewersForDay}
+
