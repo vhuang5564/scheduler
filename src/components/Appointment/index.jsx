@@ -8,6 +8,15 @@ import Form from "./Form";
 
 
 export default function Appointment(props) {
+
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    console.log(interviewer)
+  }
+
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -27,8 +36,9 @@ export default function Appointment(props) {
         />
       )}
       {mode === CREATE && (
-        <Form 
-          interviewers={[]} // change when getInterviewersForDay is implemented
+        <Form
+          onSave={save} //
+          interviewers={props.interviewers} // change when getInterviewersForDay is implemented
           onCancel={() => back()}
         />
       )}
