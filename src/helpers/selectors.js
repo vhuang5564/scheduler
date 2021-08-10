@@ -16,11 +16,12 @@ function getAppointmentsForDay(state, day) {
 };
 
 function getInterview(state, interview) {
-  if (interview === null) {
-    return null;
+  if (!interview) {
+    return null
   }
 
-  const interviewer = state.interviewers[interview["interviewer"]]
+  const interviewerId = interview["interviewer"] // 2
+  const interviewer = state.interviewers[interviewerId]
   const student = interview["student"]
   let interviewObj = {}
   interviewObj.student = student
@@ -29,67 +30,26 @@ function getInterview(state, interview) {
   return interviewObj;
 }
 
-// function getInterviewersForDay(state, day) {
-//   let interviewersList = []
-
-//   for (let id in state.days) {
-//     const dayName = state.days[id].name;
-
-//     if (day === dayName) {
-//       const appointmentsForDay = state.days[id].appointments // [1,2,3]
-//       appointmentsForDay.forEach(appointment => {
-//         if (state.appointments[appointment].interview) { // if interview is not null
-
-//           const interviewerId = state.appointments[appointment].interview.interviewer // 2
-//           console.log(interviewerId)
-//           const interviewer = state.interviewers[interviewerId]
-
-//           if (interviewersList.includes(interviewer) === false) {
-//             interviewersList.push(interviewer)
-//           }
-
-//         }
-//       })
-//       return interviewersList
-//     } 
-//   }
-//   return [];
-// };
-
-// function getForDay(state, day) {
-
-//   for (let id in state.days) {
-//     const dayName = state.days[id].name;
-
-//     if (day === dayName) {
-//       const appointments = state.days[id].appointments; // [1,2,3]
-//       let appointmentsForDay = [];
-//       appointments.forEach(appointment => {
-//         appointmentsForDay.push(state.appointments[appointment]) // pushes each appointment in to array 
-//       });
-//       return appointmentsForDay;
-//     } 
-//   }
-//   return [];
-// };
-
 function getInterviewersForDay(state, day) {
 
   for (let id in state.days) {
     const dayName = state.days[id].name;
 
     if (day === dayName) {
-      const interviewers = state.days[id].interviewers; // [1,2,3]
-      let interviewersForDay = [];
-      interviewers.forEach(interviewer => {
-        interviewersForDay.push(state.interviewers[interviewer]) // pushes each appointment in to array 
-      });
-      return interviewersForDay;
+
+      const interviewerIds = state.days[id].interviewers // [1,2,3,4,5]
+      let interviewersForDay = []
+
+      interviewerIds.forEach(interviewer => {
+        interviewersForDay.push(state.interviewers[interviewer])
+      })
+
+      return interviewersForDay
     } 
   }
   return [];
 };
-  
+
 
 
 
