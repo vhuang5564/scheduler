@@ -29,6 +29,7 @@ export default function Form(props) {
             name="name"
             type="text"
             placeholder="Enter Student Name"
+            // value={name}
             value={name}
             onChange={event => setName(event.target.value)}
             /*
@@ -36,6 +37,7 @@ export default function Form(props) {
             */
           />
         </form>
+        {/* value={interviewer} */}
         <InterviewerList interviewers={props.interviewers} value={interviewer} onChange={setInterviewer} />
       </section>
       <section className="appointment__card-right">

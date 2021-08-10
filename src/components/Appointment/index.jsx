@@ -9,40 +9,46 @@ import Confirm from "./Confirm";
 import Status from "./Status";
 
 
-export default function Appointment(props) {
-  function save(name, interviewer) {
-    const interview = {
-      student: name,
-      interviewer
-    };
-    transition(STATUS)
-    props.bookInterview(props.id, interview) //
-    transition(SHOW)
-  }
-
-  function deleteInterview() {
-    console.log(props.id);
-    console.log('props.interview',props.interview)
-    console.log('props.interviewers', props.interviewers)
-    console.log('props.bookinterview',props.bookInterview)
-    // props.interview = null
-    transition(CONFIRM)
-  }
-
-  function deleteAppointment() {
-    console.log('deted')
-    // props.cancelInterview() type error
-  }
-
+export default function Appointment(props) { // transition status doesnt show its too fast
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const CONFIRM = "CONFIRM";
   const STATUS = "STATUS";
+  const EDIT = "EDIT"
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+  
+  function save(name, interviewer) {
+    if (!name || !interviewer) { // prevents empty name/interviewer
+      return
+    }
+
+    const interview = {
+      student: name,
+      interviewer
+    };
+    // transition(STATUS)
+    props.bookInterview(props.id, interview)
+    transition(SHOW)
+  }
+
+  function deleteInterview() {
+    transition(CONFIRM)
+  }
+
+  function deleteAppointment() { // transition status doesnt show its too fast
+    transition(STATUS)
+    props.cancelInterview(props.id)
+    transition(STATUS)
+    transition(EMPTY)
+  }
+
+  function editAppointment() {
+    transition(EDIT);
+  }
 
   return (
     <article className="appointment">
@@ -52,8 +58,8 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interviewer}
-          // interviewer={props.interview.interviewer}
           onDelete={deleteInterview}
+          onEdit={editAppointment}
         />
       )}
       {mode === CREATE && (
@@ -71,6 +77,15 @@ export default function Appointment(props) {
       )}
       {mode === STATUS && (
         <Status />
+      )}
+      {mode === EDIT && (
+        <Form
+        onSave={save} //
+        interviewers={props.interviewers} // change when getInterviewersForDay is implemented
+        onCancel={() => back()}
+        name={props.interview.student}
+        interviewer={props.interviewer.id}
+        />
       )}
     </article>
   )
