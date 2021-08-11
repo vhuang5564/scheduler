@@ -7,6 +7,7 @@ import useVisualMode from "hooks/useVisualMode";
 import Form from "./Form";
 import Confirm from "./Confirm";
 import Status from "./Status";
+import Error from "./Error";
 
 
 export default function Appointment(props) { // transition status doesnt show its too fast
@@ -16,33 +17,38 @@ export default function Appointment(props) { // transition status doesnt show it
   const CONFIRM = "CONFIRM";
   const SAVING = "SAVING";
   const EDIT = "EDIT"
+  const ERROR_SAVE = "ERROR_SAVE"
+  const ERROR_DELETE = "ERROR_DELETE"
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
   
   function save(name, interviewer) {
-    // if (!name || !interviewer) { // prevents empty name/interviewer
-    //   return
-    // }
-
-    const interview = {
+      const interview = {
       student: name,
       interviewer
     };
+
     transition(SAVING)
-    props.bookInterview(props.id, interview)
-    transition(SHOW)
+
+    props
+    .bookInterview(props.id, interview)
+    // .then(() => transition(SHOW))
+    // .catch(error => transition(ERROR_SAVE, true))
+    transition(SHOW) // delete this when props is a promise
   }
 
   function deleteInterview() {
     transition(CONFIRM)
   }
 
-  function deleteAppointment() { // transition status doesnt show its too fast
+  function deleteAppointment() {
     transition(SAVING)
     props.cancelInterview(props.id)
-    transition(EMPTY)
+    // .then(() => transition(EMPTY))
+    // .catch(error => transition(ERROR_DELETE, true))
+    transition(EMPTY) // delete this when props is a promise
   }
 
   function editAppointment() {
@@ -84,6 +90,18 @@ export default function Appointment(props) { // transition status doesnt show it
         onCancel={() => back()}
         name={props.interview.student}
         interviewer={props.interviewer.id}
+        />
+      )}
+      {mode === ERROR_SAVE && (
+        <Error 
+        message="Could not save appointment"
+        onClose={back}
+        />
+      )}
+      {mode === ERROR_DELETE && (
+        <Error 
+        message="Could not delete appointment"
+        onClose={back}
         />
       )}
     </article>
