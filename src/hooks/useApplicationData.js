@@ -11,7 +11,7 @@ export default function useApplicationData() {
 
   const setDay = day => setState({...state, day }); 
 
-  const updateSpots = (dayName, days, appointments) => {
+  const updateSpots = (dayName, days, appointments) => { // might need to setstate
     const dayObj = days.find(day => day.name === dayName)
     let spots = 0;
   
@@ -38,25 +38,26 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    setState({ // use this formula to set appointments to null
-      ...state,
-      appointments
-    });
-
     // save to appointments api, go to http://localhost:8001/api/debug/reset to reset
     axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
     .then((res) => {
       console.log(res)
-      updateSpots(state.day, state.days, state.appointments) // not applied to DOM
+      updateSpots(state.day, state.days, state.appointments);
     })
+
+    setState({
+      ...state,
+      appointments
+    });
+
   }
 
   function cancelInterview(id) {
-    axios.delete(`http://localhost:8001/api/appointments/${id}`)
+    setTimeout(axios.delete(`http://localhost:8001/api/appointments/${id}`)
     .then((res) => {
       console.log(res);
-      updateSpots(state.day, state.days, state.appointments); // not applied to DOM
-    })
+      updateSpots(state.day, state.days, state.appointments);
+    }), 10000)
   }
 
   useEffect(() => {

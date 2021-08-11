@@ -98,10 +98,10 @@ test("getInterview returns null if no interview is booked", () => {
 //   expect(result.length).toEqual(1);
 // });
 
-test.only("getInterviewersForDay returns an array containing the correct interviewer objects", () => {
-  const [first] = getInterviewersForDay(state, "Tuesday");
-  expect(first).toEqual(state.interviewers["2"]);
-});
+// test("getInterviewersForDay returns an array containing the correct interviewer objects", () => {
+//   const [first] = getInterviewersForDay(state, "Tuesday");
+//   expect(first).toEqual(state.interviewers["2"]);
+// });
 
 // test("getInterviewersForDay returns an empty array when the days data is empty", () => {
 //   const result = getInterviewersForDay({ days: [] }, "Monday");

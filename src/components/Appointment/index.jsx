@@ -14,7 +14,7 @@ export default function Appointment(props) { // transition status doesnt show it
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const CONFIRM = "CONFIRM";
-  const STATUS = "STATUS";
+  const SAVING = "SAVING";
   const EDIT = "EDIT"
 
   const { mode, transition, back } = useVisualMode(
@@ -22,15 +22,15 @@ export default function Appointment(props) { // transition status doesnt show it
   );
   
   function save(name, interviewer) {
-    if (!name || !interviewer) { // prevents empty name/interviewer
-      return
-    }
+    // if (!name || !interviewer) { // prevents empty name/interviewer
+    //   return
+    // }
 
     const interview = {
       student: name,
       interviewer
     };
-    // transition(STATUS)
+    transition(SAVING)
     props.bookInterview(props.id, interview)
     transition(SHOW)
   }
@@ -40,9 +40,8 @@ export default function Appointment(props) { // transition status doesnt show it
   }
 
   function deleteAppointment() { // transition status doesnt show its too fast
-    transition(STATUS)
+    transition(SAVING)
     props.cancelInterview(props.id)
-    transition(STATUS)
     transition(EMPTY)
   }
 
@@ -75,7 +74,7 @@ export default function Appointment(props) { // transition status doesnt show it
         onConfirm={deleteAppointment} // need to make function to delete appointment
         />
       )}
-      {mode === STATUS && (
+      {mode === SAVING && (
         <Status />
       )}
       {mode === EDIT && (
