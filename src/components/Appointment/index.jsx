@@ -34,9 +34,8 @@ export default function Appointment(props) { // transition status doesnt show it
 
     props
     .bookInterview(props.id, interview)
-    // .then(() => transition(SHOW))
-    // .catch(error => transition(ERROR_SAVE, true))
-    transition(SHOW) // delete this when props is a promise
+    .then(() => transition(SHOW))
+    .catch(error => transition(ERROR_SAVE, true))
   }
 
   function deleteInterview() {
@@ -46,9 +45,8 @@ export default function Appointment(props) { // transition status doesnt show it
   function deleteAppointment() {
     transition(SAVING)
     props.cancelInterview(props.id)
-    // .then(() => transition(EMPTY))
-    // .catch(error => transition(ERROR_DELETE, true))
-    transition(EMPTY) // delete this when props is a promise
+    .then(() => transition(EMPTY))
+    .catch(error => transition(ERROR_DELETE, true))
   }
 
   function editAppointment() {
@@ -69,7 +67,7 @@ export default function Appointment(props) { // transition status doesnt show it
       )}
       {mode === CREATE && (
         <Form
-          onSave={save} //
+          onSave={save}
           interviewers={props.interviewers} // change when getInterviewersForDay is implemented
           onCancel={() => back()}
         />
