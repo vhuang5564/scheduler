@@ -12,7 +12,7 @@ const fixtures = {
       name: "Tuesday",
       appointments: [3, 4],
       interviewers: [3, 4],
-      spots: 1
+      spots: 3
     }
   ],
   appointments: {
@@ -91,5 +91,17 @@ export default {
         interviewers: fixtures.interviewers
       });
     }
-  })
+  }),
+
+  delete: jest.fn(url => {
+    if (url === "/api/appointments/2") {
+      return Promise.resolve({
+        status: 204,
+        statusText: "No Content",
+        appointments: fixtures.appointments,
+        days: fixtures.days,
+        interviewers: fixtures.interviewers
+      });
+    }
+  }),
 };
