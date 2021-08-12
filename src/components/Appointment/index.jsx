@@ -80,7 +80,7 @@ export default function Appointment(props) {
         />
       )}
       {mode === SAVING && (
-        <Status message="Saving"/>
+        <Status message="Loading"/>
       )}
       {mode === EDIT && (
         <Form

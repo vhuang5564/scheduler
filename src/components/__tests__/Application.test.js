@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent, getByText, getAllByTestId, getByAltText, getByPlaceholderText, prettyDOM, queryByText, queryByAltText } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText } from "@testing-library/react";
 
 import Application from "components/Application";
 
@@ -26,7 +26,7 @@ it("changes the schedule when a new day is selected", async () => {
 });
 
 it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
-  const { container, debug } = render(<Application />);
+  const { container } = render(<Application />);
 
   await waitForElement(() => getByText(container, "Archie Cohen"));
 
@@ -42,7 +42,7 @@ it("loads data, books an interview and reduces the spots remaining for Monday by
   fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
   fireEvent.click(getByText(appointment, "Save"));
 
-  expect(getByText(appointment, "Saving")).toBeInTheDocument();
+  expect(getByText(appointment, "Loading")).toBeInTheDocument();
 
   await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
 
@@ -70,7 +70,7 @@ it("loads data, cancels an interview and increases the spots remaining for Monda
 
   fireEvent.click(queryByText(appointment, "Confirm"));
 
-  expect(getByText(appointment, "Saving")).toBeInTheDocument();
+  expect(getByText(appointment, "Loading")).toBeInTheDocument();
 
   await waitForElement(() => getByAltText(appointment, "Add"));
 

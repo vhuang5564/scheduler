@@ -4,11 +4,13 @@ Interview scheduler is a single page application that has the ability to book an
 
 ## Final Product
 
-!["Screenshot of home page"]
+!["Screenshot of home page"](https://github.com/vhuang5564/scheduler/blob/master/public/images/scheduler.png)
 
-!["Screenshot of appointment creation"]
+!["Screenshot of appointment creation"](https://github.com/vhuang5564/scheduler/blob/master/public/images/create.png)
 
-!["Screenshot of appointment created"]
+!["Screenshot of appointment created"](https://github.com/vhuang5564/scheduler/blob/master/public/images/created.png)
+
+!["Screensho of appointment deleted"]()
 
 ## Getting Started
 
