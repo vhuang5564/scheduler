@@ -18,6 +18,7 @@ export default function Application(props) {
 
   dailyAppointments = getAppointmentsForDay(state, state.day)
   
+  // creates and map through each appointments
   const appointmentList = dailyAppointments.map(appointment => {
     const interviewForAppointment = getInterview(state, appointment.interview)
     return ( 
@@ -27,8 +28,8 @@ export default function Application(props) {
       interviewers={getInterviewersForDay(state, state.day)}
       bookInterview={bookInterview}
       cancelInterview={cancelInterview}
-      interviewer={
-      interviewForAppointment ? interviewForAppointment.interviewer : null}
+      // sets interviewer if it is not null
+      interviewer={interviewForAppointment ? interviewForAppointment.interviewer : null}
       />
     )
   })

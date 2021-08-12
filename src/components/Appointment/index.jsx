@@ -9,7 +9,7 @@ import Confirm from "./Confirm";
 import Status from "./Status";
 import Error from "./Error";
 
-
+// props from application.js
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";

@@ -1,5 +1,6 @@
 import React from "react";
 
+// props from index.jsx
 export default function Status(props) {
   return (
     <main className="appointment__card appointment__card--status">
