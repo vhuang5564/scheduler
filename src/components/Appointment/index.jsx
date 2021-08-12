@@ -10,7 +10,7 @@ import Status from "./Status";
 import Error from "./Error";
 
 
-export default function Appointment(props) { // transition status doesnt show its too fast
+export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -35,7 +35,7 @@ export default function Appointment(props) { // transition status doesnt show it
     props
     .bookInterview(props.id, interview)
     .then(() => transition(SHOW))
-    .catch(error => transition(ERROR_SAVE, true))
+    .catch(error => transition(ERROR_SAVE, true)) // history is replace when true
   }
 
   function deleteInterview() {
@@ -54,8 +54,9 @@ export default function Appointment(props) { // transition status doesnt show it
   }
 
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time}/>
+      {/* mode represents visual state */}
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
         <Show
@@ -68,23 +69,23 @@ export default function Appointment(props) { // transition status doesnt show it
       {mode === CREATE && (
         <Form
           onSave={save}
-          interviewers={props.interviewers} // change when getInterviewersForDay is implemented
+          interviewers={props.interviewers}
           onCancel={() => back()}
         />
       )}
       {mode === CONFIRM && (
         <Confirm 
         onCancel={() => back()}
-        onConfirm={deleteAppointment} // need to make function to delete appointment
+        onConfirm={deleteAppointment}
         />
       )}
       {mode === SAVING && (
-        <Status />
+        <Status message="Saving"/>
       )}
       {mode === EDIT && (
         <Form
-        onSave={save} //
-        interviewers={props.interviewers} // change when getInterviewersForDay is implemented
+        onSave={save}
+        interviewers={props.interviewers}
         onCancel={() => back()}
         name={props.interview.student}
         interviewer={props.interviewer.id}
