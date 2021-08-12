@@ -17,7 +17,8 @@ Interview scheduler is a single page application that has the ability to book an
 1. Fork and clone this api repository and follow the instructions to set up the api server https://github.com/vhuang5564/scheduler-api
 2. Fork this repository, then clone your fork of this repository.
 3. Install dependencies using the `npm install` command.
-4. Start the web server using the `npm run start` command. The app will be served at <http://localhost:8000/>.
+4. Start api server in another terminal using `npm start` command. The app will be served at <http://localhost:8001/>.
+5. Start the web server using the `npm start` command. The app will be served at <http://localhost:8000/>.
 
 ## Dependencies
 
