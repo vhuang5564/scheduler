@@ -10,7 +10,7 @@ Interview scheduler is a single page application that has the ability to book an
 
 !["Screenshot of appointment created"](https://github.com/vhuang5564/scheduler/blob/master/public/images/created.png)
 
-!["Screensho of appointment deleted"]()
+!["Screenshot of appointment deleted"](https://github.com/vhuang5564/scheduler/blob/master/public/images/delete.png)
 
 ## Getting Started
 
