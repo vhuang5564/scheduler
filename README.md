@@ -28,4 +28,3 @@ Interview scheduler is a single page application that has the ability to book an
 - react
 - react-dom
 - react-scripts
- 
